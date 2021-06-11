@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject playerLeft;
     [SerializeField] GameObject playerRight;
-    [SerializeField] Vector2 pos;
+    [SerializeField] Vector2Int posLeft;
+    [SerializeField] Vector2Int posRight;
+
 
     [SerializeField] Vector2 clampX; // min, max
     [SerializeField] Vector2 clampY; // min, max
@@ -15,7 +17,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        pos = new Vector2(4, 4);
+        posLeft = new Vector2Int(4, 4);
+        posRight = new Vector2Int(4, 4);
     }
     void Update()
     {
@@ -32,18 +35,40 @@ public class PlayerController : MonoBehaviour
         else
             vertical = vertical / Mathf.Abs(vertical); // math magic
         
-        if(!(pos.x + horizontal >= clampX.y || pos.x + horizontal < clampX.x))
+        /* NOTE
+        refer to https://answers.unity.com/questions/383671/find-gameobject-at-position.html
+        for solid walls in the future
+        */
+
+        // left player check
+        if(!(posLeft.x + horizontal >= clampX.y || posLeft.x + horizontal < clampX.x))
         {
             playerLeft.transform.position += Vector3.right * horizontal;
-            playerRight.transform.position += Vector3.right * horizontal;
-            pos += Vector2.right * horizontal;
+            posLeft += Vector2Int.right * horizontal;
         }
 
-        if(!(pos.y + vertical >= clampY.y || pos.y + vertical <= clampY.x))
+        if(!(posLeft.y + vertical >= clampY.y || posLeft.y + vertical <= clampY.x))
         {
             playerLeft.transform.position += Vector3.up * vertical;
-            playerRight.transform.position += Vector3.up * vertical;
-            pos += Vector2.up * vertical;
+            posLeft += Vector2Int.up * vertical;
         }
+
+        // right player check
+        if(!(posRight.x + horizontal >= clampX.y || posRight.x + horizontal < clampX.x))
+        {
+            playerRight.transform.position += Vector3.right * horizontal;
+            posRight += Vector2Int.right * horizontal;
+        }
+
+        if(!(posRight.y + vertical >= clampY.y || posRight.y + vertical <= clampY.x))
+        {
+            playerRight.transform.position += Vector3.up * vertical;
+            posRight += Vector2Int.up * vertical;
+        }
+
+        // not very flexible grid size, TODO fix
+        playerLeft.transform.position = (posLeft - (8 * Vector2.right) - (4* Vector2.up));
+        playerRight.transform.position = (posRight - (4*Vector2.up));
+
     }
 }
