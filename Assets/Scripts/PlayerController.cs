@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject playerLeft;
     [SerializeField] GameObject playerRight;
-    [SerializeField] LineRenderer Cord;
     [SerializeField] Vector2 pos;
 
     [SerializeField] Vector2 clampX; // min, max
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             playerLeft.transform.position += Vector3.right * horizontal;
             playerRight.transform.position += Vector3.right * horizontal;
             pos += Vector2.right * horizontal;
-            UpdateCord();
         }
 
         if(!(pos.y + vertical >= clampY.y || pos.y + vertical <= clampY.x))
@@ -46,14 +44,6 @@ public class PlayerController : MonoBehaviour
             playerLeft.transform.position += Vector3.up * vertical;
             playerRight.transform.position += Vector3.up * vertical;
             pos += Vector2.up * vertical;
-            UpdateCord();
         }
-    }
-
-
-    void UpdateCord()
-    {
-        Cord.SetPosition(0, playerLeft.transform.position);
-        Cord.SetPosition(1, playerRight.transform.position);
     }
 }
