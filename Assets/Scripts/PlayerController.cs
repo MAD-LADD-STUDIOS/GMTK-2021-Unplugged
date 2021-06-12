@@ -12,9 +12,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Sprite[] directionalSprites; // UDLR
     SpriteRenderer selfSpriteRenderer;
+
     void Start()
     {
         selfSpriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
@@ -30,31 +32,32 @@ public class PlayerController : MonoBehaviour
                 moving = false;
                 this.transform.position = new Vector3(Mathf.RoundToInt(this.transform.position.x), Mathf.RoundToInt(this.transform.position.y), 0);
             }
+            
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.W) && isWalkable(this.transform.position + Vector3.up))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 newPos = this.transform.position + Vector3.up;
                 move();
                 selfSpriteRenderer.sprite = directionalSprites[0];
             }
 
-            if (Input.GetKeyDown(KeyCode.A) && isWalkable(this.transform.position + Vector3.left))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 newPos = this.transform.position + Vector3.left;
                 move();
                 selfSpriteRenderer.sprite = directionalSprites[2];
             }
 
-            if (Input.GetKeyDown(KeyCode.S) && isWalkable(this.transform.position + Vector3.down))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 newPos = this.transform.position + Vector3.down;
                 move();
                 selfSpriteRenderer.sprite = directionalSprites[1];
             }
 
-            if (Input.GetKeyDown(KeyCode.D) && isWalkable(this.transform.position + Vector3.right))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 newPos = this.transform.position + Vector3.right;
                 move();
@@ -70,16 +73,28 @@ public class PlayerController : MonoBehaviour
         moving = true;
     }
 
-
-    bool isWalkable(Vector3 area) // yes you can walk into the void mhm makes sense
+    /*
+    bool isWalkable() // yes you can walk into the void mhm makes sense
     {
-        var res = Physics2D.OverlapCircle(area, 0.2f);
-        if(res == null)
+        //var res = Physics2D.OverlapCircle(area, 0.2f);
+        if(playerCollider == null)
             return true;
-        else if(res.CompareTag("Void"))
+        else if(playerCollider.CompareTag("Void"))
             return true;
         else
             return false;
     }
+    */
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag != "Void")
+        {
+            moving = false;
+            this.transform.position = currentPos;
+        }
+    }
+
+        
+    
 }
