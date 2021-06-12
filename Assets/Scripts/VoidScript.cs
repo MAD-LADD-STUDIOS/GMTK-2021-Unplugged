@@ -14,7 +14,7 @@ public class VoidScript : MonoBehaviour
         if(collider2D.CompareTag("Player"))
         {
             Debug.Log($"{this.gameObject.name} collided with {collider2D.gameObject.name}");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

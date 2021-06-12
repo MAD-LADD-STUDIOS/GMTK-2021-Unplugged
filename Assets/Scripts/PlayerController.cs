@@ -86,9 +86,10 @@ public class PlayerController : MonoBehaviour
     }
     */
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != "Void" || collision.gameObject.tag != "Button")
+        Debug.Log(collision.isTrigger);
+        if(!collision.isTrigger)
         {
             moving = false;
             this.transform.position = currentPos;

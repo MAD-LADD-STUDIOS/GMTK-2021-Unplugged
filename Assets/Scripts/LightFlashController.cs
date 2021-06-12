@@ -35,4 +35,16 @@ public class LightFlashController : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(pauseMinLength, pauseMaxLength));
         StartCoroutine(DoRandomLight());
     }
+
+
+    // we might need it /shrug
+    public void TurnOnLight()
+    {
+        childLight.GetComponent<Light2D>().intensity = intensity;
+    }
+
+    public void TurnOfflight()
+    {
+        childLight.GetComponent<Light2D>().intensity = 0;
+    }
 }
