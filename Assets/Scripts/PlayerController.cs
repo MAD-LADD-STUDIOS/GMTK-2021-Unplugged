@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     public void OnPlug()
     {
         moving = false;
-        transform.position = newPos;
+        // transform.position = newPos;
         if(currentMovementDir == 0)
         {
             transform.position += Vector3.down * 0.7f;

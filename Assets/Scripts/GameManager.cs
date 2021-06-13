@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     bool isOriginalGameManager;
     int lastDeadPlayer = -1;
     [HideInInspector] public int playersAtEnd = 0;
+    public AudioClip[] clickPositiveSounds;
+    public AudioClip[] clickNegativeSounds;
+
     void Start()
     {
         if(FindObjectsOfType<GameManager>().Length > 1 && !isOriginalGameManager)
@@ -25,6 +28,8 @@ public class GameManager : MonoBehaviour
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
+
+
 
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -101,6 +106,11 @@ public class GameManager : MonoBehaviour
             leftSideCoverAnimator.SetBool("isLoading", true);
         else
             rightSideCoverAnimator.SetBool("isLoading", true);
+    }
+
+    public AudioClip RandomFromArray(AudioClip[] array) // dont have time to make it more flexible
+    {
+        return array[Mathf.RoundToInt(Random.Range(0, array.Length))];
     }
 
     IEnumerator loadSceneAfterSeconds(float secs, int index)

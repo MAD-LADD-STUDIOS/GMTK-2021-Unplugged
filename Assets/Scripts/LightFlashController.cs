@@ -5,12 +5,12 @@ using UnityEngine.Experimental.Rendering.Universal; // what
 
 public class LightFlashController : MonoBehaviour
 {
-    public bool flashEnabled;
-    public float flashMinLength;
-    public float flashMaxLength;
-    public float pauseMinLength;
-    public float pauseMaxLength;
-    public float intensity;
+    [SerializeField] bool flashEnabled;
+    [SerializeField] float flashMinLength;
+    [SerializeField] float flashMaxLength;
+    [SerializeField] float pauseMinLength;
+    [SerializeField] float pauseMaxLength;
+    [SerializeField] float intensity;
 
     [SerializeField] GameObject childLight;
 
@@ -24,6 +24,7 @@ public class LightFlashController : MonoBehaviour
     IEnumerator DoRandomLight()
     {
         childLight.GetComponent<Light2D>().intensity = intensity;
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(Random.Range(flashMinLength, flashMaxLength-1) + Random.value);
         StartCoroutine(DoRandomPause());
 
@@ -32,6 +33,7 @@ public class LightFlashController : MonoBehaviour
     IEnumerator DoRandomPause()
     {
         childLight.GetComponent<Light2D>().intensity = 0;
+        GetComponent<AudioSource>().Pause();
         yield return new WaitForSeconds(Random.Range(pauseMinLength, pauseMaxLength-1) + Random.value);
         StartCoroutine(DoRandomLight());
     }

@@ -1815,5 +1815,9 @@ PrefabInstance:
       propertyPath: rightSideCoverAnimator
       value: 
       objectReference: {fileID: 1954331168}
+    - target: {fileID: 2993149063469898678, guid: 0605b24c02622cd448fb6ac1c92400e4, type: 3}
+      propertyPath: clickNegativeSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0605b24c02622cd448fb6ac1c92400e4, type: 3}

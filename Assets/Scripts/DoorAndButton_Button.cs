@@ -15,10 +15,12 @@ public class DoorAndButton_Button : MonoBehaviour
     [SerializeField] float timedHoldTime;
     [SerializeField] buttonType type;
     [SerializeField] bool isPressed;
+    [SerializeField] GameManager manager;
 
     void Start()
     {
         selfRenderer = GetComponent<SpriteRenderer>();
+        manager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -40,13 +42,19 @@ public class DoorAndButton_Button : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isPressed = true;
+        GetComponent<AudioSource>().clip = manager.RandomFromArray(manager.clickPositiveSounds);
+        GetComponent<AudioSource>().Play();
     }
 
 
     void OnTriggerExit2D(Collider2D collider)
     {
         if(type == buttonType.press)
+        {
             isPressed = false;
+            manager.RandomFromArray(manager.clickPositiveSounds);
+            GetComponent<AudioSource>().Play();
+        }
         else if(type == buttonType.timed)
             StartCoroutine(TimedDoorControl());
         
@@ -56,6 +64,8 @@ public class DoorAndButton_Button : MonoBehaviour
     {
         yield return new WaitForSeconds(timedHoldTime);
         isPressed = false;
+        manager.RandomFromArray(manager.clickPositiveSounds);
+        GetComponent<AudioSource>().Play();
     }
 
     
