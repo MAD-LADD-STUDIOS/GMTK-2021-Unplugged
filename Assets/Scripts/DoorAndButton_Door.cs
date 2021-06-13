@@ -14,6 +14,7 @@ public class DoorAndButton_Door : MonoBehaviour
     [SerializeField] Sprite sideOffSprite;
     [SerializeField] SpriteRenderer selfSpriteRenderer;
     [SerializeField] Light2D childLight;
+    public bool flipFunction;
 
     // visuals control
     int randomElecIndex;
@@ -61,7 +62,7 @@ public class DoorAndButton_Door : MonoBehaviour
         }
 
 
-        if(Random.value < 0.05 && !isCoroutineRunning)
+        if(Random.value < 0.05f && !isCoroutineRunning)
         {
             StartCoroutine(RandomlyChangeElecLook());
         }

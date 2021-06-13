@@ -11,8 +11,7 @@ public class LevelEnd : MonoBehaviour
     public int type;
 
     void Start()
-    {
-            
+    { 
         manager = FindObjectOfType<GameManager>();
     }
 
@@ -20,6 +19,7 @@ public class LevelEnd : MonoBehaviour
     {
         if(collider.CompareTag("Player") && ((type == 0 && collider.gameObject.name == "PlayerRight") || (type == 1 && collider.gameObject.name == "PlayerLeft")))
         {
+            collider.GetComponent<PlayerController>().OnPlug();
             manager.playersAtEnd ++;
             if(manager.playersAtEnd == 2)
                 manager.LoadScene(nextLevelID);

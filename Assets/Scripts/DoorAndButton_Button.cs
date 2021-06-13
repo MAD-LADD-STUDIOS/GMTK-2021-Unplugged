@@ -31,7 +31,11 @@ public class DoorAndButton_Button : MonoBehaviour
         
 
         // update door
-        door.GetComponent<DoorAndButton_Door>().isOpened = isPressed;
+        DoorAndButton_Door doorDoor = door.GetComponent<DoorAndButton_Door>(); // I have the best variable naming skills
+        if(doorDoor.flipFunction)
+            door.GetComponent<DoorAndButton_Door>().isOpened = !isPressed;
+        else
+            door.GetComponent<DoorAndButton_Door>().isOpened = isPressed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             var brokenDownSprite = new GameObject();
             brokenDownSprite.AddComponent<SpriteRenderer>();
             brokenDownSprite.GetComponent<SpriteRenderer>().sprite = item;
-            brokenDownSprite.GetComponent<SpriteRenderer>().sortingOrder = 10;
+            brokenDownSprite.GetComponent<SpriteRenderer>().sortingOrder = 20;
             brokenDownSprite.transform.position = (Vector2.up * (Random.Range(-5, 5) + Random.value)) + ((playerIndex == 0 ? Vector2.left : Vector2.right) * (Random.Range(0, 5) + Random.value));
             brokenDownSprite.transform.eulerAngles = Vector3.forward * (Random.Range(0, 360));
             brokenDownSprite.transform.localScale = Vector3.one * 3;
