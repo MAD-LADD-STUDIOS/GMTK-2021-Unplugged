@@ -13,6 +13,7 @@ public class LevelEnd : MonoBehaviour
     void Start()
     { 
         manager = FindObjectOfType<GameManager>();
+        manager.playersAtEnd = 0;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
