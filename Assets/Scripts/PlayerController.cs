@@ -88,8 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.isTrigger);
-        if(!collision.isTrigger)
+        if(!collision.isTrigger || collision.CompareTag("Player"))
         {
             moving = false;
             this.transform.position = currentPos;

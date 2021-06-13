@@ -24,7 +24,7 @@ public class LightFlashController : MonoBehaviour
     IEnumerator DoRandomLight()
     {
         childLight.GetComponent<Light2D>().intensity = intensity;
-        yield return new WaitForSeconds(Random.Range(flashMinLength, flashMaxLength));
+        yield return new WaitForSeconds(Random.Range(flashMinLength, flashMaxLength-1) + Random.value);
         StartCoroutine(DoRandomPause());
 
     }
@@ -32,7 +32,7 @@ public class LightFlashController : MonoBehaviour
     IEnumerator DoRandomPause()
     {
         childLight.GetComponent<Light2D>().intensity = 0;
-        yield return new WaitForSeconds(Random.Range(pauseMinLength, pauseMaxLength));
+        yield return new WaitForSeconds(Random.Range(pauseMinLength, pauseMaxLength-1) + Random.value);
         StartCoroutine(DoRandomLight());
     }
 
