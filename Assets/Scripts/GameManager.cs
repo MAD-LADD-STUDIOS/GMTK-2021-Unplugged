@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         leftSideCoverAnimator.SetBool("isLoading", true);
         rightSideCoverAnimator.SetBool("isLoading", true);
+        playersAtEnd = 0;
         StartCoroutine(loadSceneAfterSeconds(1, buildIndex));
     }
 

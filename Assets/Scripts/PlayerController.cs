@@ -36,33 +36,35 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                newPos = this.transform.position + Vector3.up;
-                move();
-                selfSpriteRenderer.sprite = directionalSprites[0];
-            }
+            
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    newPos = this.transform.position + Vector3.up;
+                    move();
+                    selfSpriteRenderer.sprite = directionalSprites[0];
+                }
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                newPos = this.transform.position + Vector3.left;
-                move();
-                selfSpriteRenderer.sprite = directionalSprites[2];
-            }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    newPos = this.transform.position + Vector3.left;
+                    move();
+                    selfSpriteRenderer.sprite = directionalSprites[2];
+                }
 
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                newPos = this.transform.position + Vector3.down;
-                move();
-                selfSpriteRenderer.sprite = directionalSprites[1];
-            }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    newPos = this.transform.position + Vector3.down;
+                    move();
+                    selfSpriteRenderer.sprite = directionalSprites[1];
+                }
 
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                newPos = this.transform.position + Vector3.right;
-                move();
-                selfSpriteRenderer.sprite = directionalSprites[3];
-            }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    newPos = this.transform.position + Vector3.right;
+                    move();
+                    selfSpriteRenderer.sprite = directionalSprites[3];
+                }
+            
         }
     }
 
@@ -72,19 +74,6 @@ public class PlayerController : MonoBehaviour
         currentTime = 0.0f;
         moving = true;
     }
-
-    /*
-    bool isWalkable() // yes you can walk into the void mhm makes sense
-    {
-        //var res = Physics2D.OverlapCircle(area, 0.2f);
-        if(playerCollider == null)
-            return true;
-        else if(playerCollider.CompareTag("Void"))
-            return true;
-        else
-            return false;
-    }
-    */
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

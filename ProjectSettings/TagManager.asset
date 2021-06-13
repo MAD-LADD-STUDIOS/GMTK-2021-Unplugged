@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Void
   - Button
+  - endingArea
   layers:
   - Default
   - TransparentFX

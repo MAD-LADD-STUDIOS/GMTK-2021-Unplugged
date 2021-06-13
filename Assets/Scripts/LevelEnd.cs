@@ -27,11 +27,11 @@ public class LevelEnd : MonoBehaviour
         }
     }
 
-    void OnTiggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            manager.playersAtEnd --;
+            manager.playersAtEnd--;
         }
     }
 }
