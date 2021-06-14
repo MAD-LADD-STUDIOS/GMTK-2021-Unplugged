@@ -1,39 +1,101 @@
+using System.IO;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Animator leftSideCoverAnimator;
-    [SerializeField] Animator rightSideCoverAnimator;
-    [Space]
+    [Header ("Scene Transition")]
+        [SerializeField] Animator leftSideCoverAnimator;
+        [SerializeField] Animator rightSideCoverAnimator;
+    [Header ("Death Screen")]
     [SerializeField] Sprite[] bluePlayerDiedSprites;
 
     [SerializeField] Sprite[] redPlayerDiedSprites;
     bool isOriginalGameManager;
     int lastDeadPlayer = -1;
     [HideInInspector] public int playersAtEnd = 0;
+    [Header ("SFX")]
     public AudioClip[] clickPositiveSounds;
     public AudioClip[] clickNegativeSounds;
+    [Header ("Settings")]
+    [SerializeField] Settings settings;
+    [SerializeField] GameObject bg;
+    
 
     void Start()
     {
         if(FindObjectsOfType<GameManager>().Length > 1 && !isOriginalGameManager)
+        {
             Destroy(this.gameObject);
+            return;
+        }
         else
         {
             isOriginalGameManager = true;
             DontDestroyOnLoad(this.gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
+
+        bg = GameObject.Find("ComputerBackground");
+        string settingsPath = Application.persistentDataPath + "/settings.json";
+
+        if(File.Exists(settingsPath))
+        {
+            settings = JsonUtility.FromJson<Settings>(File.ReadAllText(settingsPath));
+            if(settings == null)
+            {
+                File.WriteAllText(settingsPath, JsonUtility.ToJson(new Settings()));
+                settings = JsonUtility.FromJson<Settings>(File.ReadAllText(settingsPath));
+            }
+        }
+        else
+            settings = new Settings();
+        
+        UpdateScreenFromSettings(settings);
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadScene(0);
+        }
+    }
 
+    public void UpdateScreenFromSettings(Settings newSettings)
+    {
+        settings = newSettings;
+        
+        bg.SetActive(settings._showBackground);
+
+
+        foreach (var item in FindObjectsOfType<LightFlashController>())
+        {
+            item.flashEnabled = settings._enableLightFlashing;
+        }
+        Camera.main.GetComponent<Volume>().enabled = settings._enablePostProcess;
+
+        foreach (var item in FindObjectsOfType<AudioSource>())
+        {        
+            item.volume = settings._SFXLevel;
+        }
+
+
+        transform.Find("Music").GetComponent<AudioSource>().volume = settings._musicLevel;
+    }
 
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(mode != LoadSceneMode.Additive)
+        {
+            bg = GameObject.Find("ComputerBackground");
+            UpdateScreenFromSettings(settings);
+        }
+        
         leftSideCoverAnimator = Camera.main.transform.Find("ScreenCoverLeft").GetComponent<Animator>();
         rightSideCoverAnimator = Camera.main.transform.Find("ScreenCoverRight").GetComponent<Animator>();
         

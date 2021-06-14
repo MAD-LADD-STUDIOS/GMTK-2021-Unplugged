@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal; // what
 
 public class LightFlashController : MonoBehaviour
 {
-    [SerializeField] bool flashEnabled;
+    public bool flashEnabled;
     [SerializeField] float flashMinLength;
     [SerializeField] float flashMaxLength;
     [SerializeField] float pauseMinLength;

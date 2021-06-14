@@ -231,5 +231,5 @@ MonoBehaviour:
   flashMaxLength: 2
   pauseMinLength: 1
   pauseMaxLength: 2
-  intensity: 4
+  intensity: 2
   childLight: {fileID: 0}
