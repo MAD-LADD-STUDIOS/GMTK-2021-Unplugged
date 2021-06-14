@@ -156,7 +156,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
+  m_Intensity: 2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -232,7 +232,7 @@ MonoBehaviour:
   flashMaxLength: 2
   pauseMinLength: 1
   pauseMaxLength: 2
-  intensity: 4
+  intensity: 2
   childLight: {fileID: 0}
 --- !u!82 &1278453355003323816
 AudioSource:
