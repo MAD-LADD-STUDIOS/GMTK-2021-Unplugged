@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveTime = 1.0f;
+    [SerializeField] float moveTimePause;
     float currentTime = 0.0f;
     Vector3 currentPos;
     Vector3 newPos;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
             this.transform.position = Vector3.LerpUnclamped(currentPos, newPos, currentTime/moveTime);
             currentTime += Time.deltaTime;
 
-            if (currentTime >= moveTime) 
+            if (currentTime >= moveTime+moveTimePause) 
             {
                 moving = false;
                 this.transform.position = new Vector3(Mathf.RoundToInt(this.transform.position.x), Mathf.RoundToInt(this.transform.position.y), 0);
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
-                if (Input.GetKeyDown(KeyCode.W) && isPluggedDirectionAvailable(0))
+                float controllerSensitivity = 0.4f; // todo move to settings
+                if (Input.GetAxisRaw("Vertical") > controllerSensitivity && isPluggedDirectionAvailable(0))
                 {
                     newPos = this.transform.position + Vector3.up;
                     move();
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
                         isPluggedIn = false;
                 }
 
-                if (Input.GetKeyDown(KeyCode.A) && isPluggedDirectionAvailable(2))
+                if (Input.GetAxisRaw("Horizontal") < -controllerSensitivity && isPluggedDirectionAvailable(2))
                 {
                     newPos = this.transform.position + Vector3.left;
                     move();
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
                         isPluggedIn = false;
                 }
 
-                if (Input.GetKeyDown(KeyCode.S) && isPluggedDirectionAvailable(1))
+                if (Input.GetAxisRaw("Vertical") < -controllerSensitivity && isPluggedDirectionAvailable(1))
                 {
                     newPos = this.transform.position + Vector3.down;
                     move();
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
                         isPluggedIn = false;
                 }
 
-                if (Input.GetKeyDown(KeyCode.D) && isPluggedDirectionAvailable(3))
+                if (Input.GetAxisRaw("Horizontal") > controllerSensitivity && isPluggedDirectionAvailable(3))
                 {
                     newPos = this.transform.position + Vector3.right;
                     move();
