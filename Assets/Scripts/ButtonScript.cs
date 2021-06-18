@@ -18,6 +18,7 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] Toggle showBakground;
     [SerializeField] Slider musicLevel;
     [SerializeField] Slider SFXLevel;
+    [SerializeField] Slider controllerSens;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class ButtonScript : MonoBehaviour
 
                 musicLevel.value = savedSettings._musicLevel;
                 SFXLevel.value = savedSettings._SFXLevel;
+                controllerSens.value = savedSettings._controllerSens;
             }
             else
             {
@@ -81,6 +83,7 @@ public class ButtonScript : MonoBehaviour
 
         settingsData._musicLevel = musicLevel.value;
         settingsData._SFXLevel = SFXLevel.value;
+        settingsData._controllerSens = controllerSens.value;
 
         File.WriteAllText(settingsPath, JsonUtility.ToJson(settingsData));
 

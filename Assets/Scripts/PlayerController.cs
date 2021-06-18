@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveTime = 1.0f;
-    [SerializeField] float moveTimePause;
     float currentTime = 0.0f;
     Vector3 currentPos;
     Vector3 newPos;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
             this.transform.position = Vector3.LerpUnclamped(currentPos, newPos, currentTime/moveTime);
             currentTime += Time.deltaTime;
 
-            if (currentTime >= moveTime+moveTimePause) 
+            if (currentTime >= moveTime) 
             {
                 moving = false;
                 this.transform.position = new Vector3(Mathf.RoundToInt(this.transform.position.x), Mathf.RoundToInt(this.transform.position.y), 0);
@@ -38,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-                float controllerSensitivity = 0.4f; // todo move to settings
+                float controllerSensitivity = 0.6f; // todo move to settings
                 if (Input.GetAxisRaw("Vertical") > controllerSensitivity && isPluggedDirectionAvailable(0))
                 {
                     newPos = this.transform.position + Vector3.up;

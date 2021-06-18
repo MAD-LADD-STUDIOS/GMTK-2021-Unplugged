@@ -8,4 +8,5 @@ public class Settings
     public bool _showBackground = true;
     public float _musicLevel = 1;
     public float _SFXLevel = 1;
+    public float _controllerSens = 0.6f;
 }

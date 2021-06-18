@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour
     public AudioClip[] clickPositiveSounds;
     public AudioClip[] clickNegativeSounds;
     [Header ("Settings")]
-    [SerializeField] Settings settings;
+    public Settings settings;
     [SerializeField] GameObject bg;
     
 
-    void Start()
+    void Awake()
     {
         if(FindObjectsOfType<GameManager>().Length > 1 && !isOriginalGameManager)
         {
