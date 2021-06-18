@@ -11,7 +11,7 @@ public class MainMenuControllerSupport : MonoBehaviour
     [System.Serializable]
     public class buttonArray
     {
-        Button[] buttons;
+        public Button[] buttons;
 
         public Button this[int index]
         {
@@ -19,7 +19,7 @@ public class MainMenuControllerSupport : MonoBehaviour
             set => buttons[index] = value;
         }
     }
-    [SerializeField] Button[] buttons;
+    [SerializeField] buttonArray[] buttons;
 
     Vector2 highlightedButton;
     [SerializeField] Sprite highlightedButtonSprite;
