@@ -679,7 +679,6 @@ GameObject:
   - component: {fileID: 342232237}
   - component: {fileID: 342232236}
   - component: {fileID: 342232235}
-  - component: {fileID: 342232238}
   m_Layer: 5
   m_Name: EasterEgg
   m_TagString: Untagged
@@ -750,7 +749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342232238}
+      - m_Target: {fileID: 1947844692}
         m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
@@ -800,28 +799,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342232233}
   m_CullTransparentMesh: 1
---- !u!114 &342232238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342232233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c704c09a0179b8843a40aa139fb646c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  credits: {fileID: 0}
-  lightFlash: {fileID: 0}
-  postProcess: {fileID: 0}
-  showBakground: {fileID: 0}
-  musicLevel: {fileID: 0}
-  SFXLevel: {fileID: 0}
-  controllerSens: {fileID: 0}
-  timerEnabled: {fileID: 0}
-  playerMoveTime: {fileID: 0}
 --- !u!1 &356953644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,6 +3043,10 @@ PrefabInstance:
       propertyPath: rightSideCoverAnimator
       value: 
       objectReference: {fileID: 1954331168}
+    - target: {fileID: 2993149063469898678, guid: 0605b24c02622cd448fb6ac1c92400e4, type: 3}
+      propertyPath: settings._playerMoveTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2993149063469898678, guid: 0605b24c02622cd448fb6ac1c92400e4, type: 3}
       propertyPath: clickNegativeSounds.Array.data[3]
       value: 

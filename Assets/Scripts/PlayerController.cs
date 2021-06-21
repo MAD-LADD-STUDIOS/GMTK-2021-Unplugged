@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     float controllerSensitivity;
     bool awaitingRelease;
     [SerializeField] GameObject childShadow;
+    [SerializeField] GameObject deathEffect;
 
     void Start()
     {
@@ -119,8 +120,10 @@ public class PlayerController : MonoBehaviour
             this.transform.position = currentPos;
         }
 
-        // if(collision.isTrigger)
-            // explode!
+        if (collision.isTrigger)
+        {
+            Instantiate(deathEffect, transform);
+        }
     }
 
     bool isPluggedDirectionAvailable(int dir)

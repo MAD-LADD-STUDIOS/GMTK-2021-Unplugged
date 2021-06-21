@@ -105,6 +105,7 @@ MonoBehaviour:
   - {fileID: 3054439076135632626, guid: 0bdc4ba6bfb1a6845915b40430e02ac2, type: 3}
   - {fileID: 7158364795336672142, guid: 0bdc4ba6bfb1a6845915b40430e02ac2, type: 3}
   childShadow: {fileID: 0}
+  deathEffect: {fileID: 5461615605607288085, guid: 8e72676f29a9ed04ca7dfd89bda2e87b, type: 3}
 --- !u!61 &2682652485946441997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   - {fileID: 2767646214761213222, guid: 0bdc4ba6bfb1a6845915b40430e02ac2, type: 3}
   - {fileID: 5840598288223990395, guid: 0bdc4ba6bfb1a6845915b40430e02ac2, type: 3}
   childShadow: {fileID: 0}
+  deathEffect: {fileID: 5461615605607288085, guid: 8e72676f29a9ed04ca7dfd89bda2e87b, type: 3}
 --- !u!61 &2682652487774620292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -398,7 +400,7 @@ MonoBehaviour:
   - {x: -0.30400592, y: -0.2515322, z: 0}
   m_ShapePathHash: 804256282
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48612
+  m_InstanceId: 37818
 --- !u!1 &6474912347365631120
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,4 +465,4 @@ MonoBehaviour:
   - {x: -0.50100905, y: 0.18918483, z: 0}
   m_ShapePathHash: -230320234
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48606
+  m_InstanceId: 37812
