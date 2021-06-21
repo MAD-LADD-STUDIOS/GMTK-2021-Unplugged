@@ -19,6 +19,8 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] Slider musicLevel;
     [SerializeField] Slider SFXLevel;
     [SerializeField] Slider controllerSens;
+    [SerializeField] Toggle timerEnabled;
+    [SerializeField] Slider playerMoveTime;
 
     void Start()
     {
@@ -32,10 +34,13 @@ public class ButtonScript : MonoBehaviour
                 lightFlash.isOn = savedSettings._enableLightFlashing;
                 postProcess.isOn = savedSettings._enablePostProcess;
                 showBakground.isOn = savedSettings._showBackground;
+                timerEnabled.isOn = savedSettings._showTimer;
 
                 musicLevel.value = savedSettings._musicLevel;
                 SFXLevel.value = savedSettings._SFXLevel;
                 controllerSens.value = savedSettings._controllerSens;
+                playerMoveTime.value = savedSettings._playerMoveTime;
+
             }
             else
             {
@@ -80,10 +85,12 @@ public class ButtonScript : MonoBehaviour
         settingsData._enableLightFlashing = lightFlash.isOn;
         settingsData._enablePostProcess = postProcess.isOn;
         settingsData._showBackground = showBakground.isOn;
+        settingsData._showTimer = timerEnabled.isOn;
 
         settingsData._musicLevel = musicLevel.value;
         settingsData._SFXLevel = SFXLevel.value;
         settingsData._controllerSens = controllerSens.value;
+        settingsData._playerMoveTime = playerMoveTime.value;
 
         File.WriteAllText(settingsPath, JsonUtility.ToJson(settingsData));
 

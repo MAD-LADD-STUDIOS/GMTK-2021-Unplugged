@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float moveTime = 1.0f;
+    public float moveTime = 1.0f;
     float currentTime = 0.0f;
     Vector3 currentPos;
     Vector3 newPos;
@@ -13,11 +13,14 @@ public class PlayerController : MonoBehaviour
     int currentMovementDir; // UDLR (0123)
     [SerializeField] Sprite[] directionalSprites; // UDLR
     SpriteRenderer selfSpriteRenderer;
+    float controllerSensitivity;
+    bool awaitingRelease;
 
     void Start()
     {
         selfSpriteRenderer = GetComponent<SpriteRenderer>();
 
+        controllerSensitivity = FindObjectOfType<GameManager>().settings._controllerSens;
     }
 
     void Update()
@@ -35,9 +38,8 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        else
+        else if(!awaitingRelease)
         {
-                float controllerSensitivity = 0.6f; // todo move to settings
                 if (Input.GetAxisRaw("Vertical") > controllerSensitivity && isPluggedDirectionAvailable(0))
                 {
                     newPos = this.transform.position + Vector3.up;
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
                 }
             
         }
+        awaitingRelease = !isReleased();
     }
 
     void move()
@@ -144,6 +147,11 @@ public class PlayerController : MonoBehaviour
         }
         
         isPluggedIn = true;
+    }
+
+    bool isReleased()
+    {
+        return Mathf.Abs(Input.GetAxisRaw("Horizontal")) < controllerSensitivity && Mathf.Abs(Input.GetAxisRaw("Vertical")) < controllerSensitivity;
     }
 
         

@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [Header ("Settings")]
     public Settings settings;
     [SerializeField] GameObject bg;
+    [Header ("Timer")]
+    [SerializeField] float time;
     
 
     void Awake()
@@ -63,6 +65,18 @@ public class GameManager : MonoBehaviour
         {
             LoadScene(0);
         }
+
+        if(SceneManager.GetActiveScene().name.StartsWith("Level"))
+        {
+            float seconds = (int)time;
+            float minutes = (int)(seconds / 60);
+            float milliseconds = time - (int)time;
+            GameObject.Find("Timer").GetComponent<TMPro.TMP_Text>().text = $"{minutes}:{seconds};{milliseconds}";
+
+            time += Time.deltaTime;
+        }
+
+        
     }
 
     public void UpdateScreenFromSettings(Settings newSettings)
@@ -95,6 +109,9 @@ public class GameManager : MonoBehaviour
             bg = GameObject.Find("ComputerBackground");
             UpdateScreenFromSettings(settings);
         }
+
+        if(scene.name == "Level01")
+            time = 0;
         
         leftSideCoverAnimator = Camera.main.transform.Find("ScreenCoverLeft").GetComponent<Animator>();
         rightSideCoverAnimator = Camera.main.transform.Find("ScreenCoverRight").GetComponent<Animator>();
@@ -107,6 +124,12 @@ public class GameManager : MonoBehaviour
                 item.objectLocCopy = rightSideCoverAnimator.transform;
         }
         
+        GameObject.Find("Timer").SetActive(settings._showTimer);
+
+        foreach (var item in FindObjectsOfType<PlayerController>())
+        {
+            item.moveTime = settings._playerMoveTime;
+        }
 
         StartCoroutine(destroyPlayerDiedObject());
     }
