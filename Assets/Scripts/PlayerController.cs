@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer selfSpriteRenderer;
     float controllerSensitivity;
     bool awaitingRelease;
+    [SerializeField] GameObject childShadow;
 
     void Start()
     {
         selfSpriteRenderer = GetComponent<SpriteRenderer>();
 
         controllerSensitivity = FindObjectOfType<GameManager>().settings._controllerSens;
+
+        childShadow = transform.Find("PlayerShadow").gameObject;
     }
 
     void Update()
@@ -47,10 +50,12 @@ public class PlayerController : MonoBehaviour
                     if(!isPluggedIn)
                     {
                         selfSpriteRenderer.sprite = directionalSprites[0];
+                        childShadow.transform.localEulerAngles = Vector3.forward * -90;
                         currentMovementDir = 0;
                     }
                     else
                         isPluggedIn = false;
+                    
                 }
 
                 if (Input.GetAxisRaw("Horizontal") < -controllerSensitivity && isPluggedDirectionAvailable(2))
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
                     if(!isPluggedIn)
                     {
                         selfSpriteRenderer.sprite = directionalSprites[2];
+                        childShadow.transform.localEulerAngles = Vector3.zero;
                         currentMovementDir = 2;
                     }
                     else
@@ -73,6 +79,7 @@ public class PlayerController : MonoBehaviour
                     if(!isPluggedIn)
                     {
                         selfSpriteRenderer.sprite = directionalSprites[1];
+                        childShadow.transform.localEulerAngles = Vector3.forward * 90;
                         currentMovementDir = 1;
                     }
                     else
@@ -86,6 +93,7 @@ public class PlayerController : MonoBehaviour
                     if(!isPluggedIn)
                     {
                         selfSpriteRenderer.sprite = directionalSprites[3];
+                        childShadow.transform.localEulerAngles = Vector3.forward * 180;
                         currentMovementDir = 3;
                     }
                     else
@@ -110,6 +118,9 @@ public class PlayerController : MonoBehaviour
             moving = false;
             this.transform.position = currentPos;
         }
+
+        // if(collision.isTrigger)
+            // explode!
     }
 
     bool isPluggedDirectionAvailable(int dir)

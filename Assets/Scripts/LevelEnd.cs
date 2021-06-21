@@ -22,6 +22,12 @@ public class LevelEnd : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+
+        if(manager == null)
+            manager = FindObjectOfType<GameManager>();
+        
+        if(manager == null) 
+            Debug.LogError("There are No Game Managers in the scene. Please make sure you are loading this scene from the main menu.");
         if(collider.CompareTag("Player") && ((type == 0 && collider.gameObject.name == "PlayerRight") || (type == 1 && collider.gameObject.name == "PlayerLeft")))
         {
             GetComponent<AudioSource>().clip = manager.RandomFromArray(manager.clickPositiveSounds);
