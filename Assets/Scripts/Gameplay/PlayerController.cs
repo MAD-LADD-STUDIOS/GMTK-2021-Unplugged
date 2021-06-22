@@ -122,7 +122,10 @@ public class PlayerController : MonoBehaviour
 
         if (collision.isTrigger)
         {
-            Instantiate(deathEffect, transform);
+            var effect = Instantiate(deathEffect);
+            effect.transform.position = transform.position;
+
+
         }
     }
 
