@@ -120,11 +120,11 @@ public class PlayerController : MonoBehaviour
             this.transform.position = currentPos;
         }
 
-        if (collision.isTrigger)
+        if (collision.isTrigger && collision.CompareTag("Void"))
         {
             var effect = Instantiate(deathEffect);
             effect.transform.position = transform.position;
-
+            selfSpriteRenderer.enabled = false;
 
         }
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 public enum doorType {forward, side};
 public class DoorAndButton_Door : MonoBehaviour
@@ -13,7 +13,7 @@ public class DoorAndButton_Door : MonoBehaviour
     [SerializeField] Sprite forwardOffSprite;
     [SerializeField] Sprite sideOffSprite;
     [SerializeField] SpriteRenderer selfSpriteRenderer;
-    [SerializeField] Light2D childLight;
+    [SerializeField] UnityEngine.Rendering.Universal.Light2D childLight;
     public bool flipFunction;
 
     // visuals control
@@ -31,7 +31,7 @@ public class DoorAndButton_Door : MonoBehaviour
             randomElecIndex = Mathf.RoundToInt(Random.Range(0, sideOnSprites.Length));
         
 
-        childLight = transform.GetChild(0).GetComponent<Light2D>();
+        childLight = transform.GetChild(0).GetComponent<UnityEngine.Rendering.Universal.Light2D>();
 
         if(type == doorType.side)
         {

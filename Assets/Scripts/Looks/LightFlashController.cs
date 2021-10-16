@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Experimental.Rendering.Universal; // what
+ // what
 
 public class LightFlashController : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class LightFlashController : MonoBehaviour
 
     IEnumerator DoRandomLight()
     {
-        childLight.GetComponent<Light2D>().intensity = intensity;
+        childLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().intensity = intensity;
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(Random.Range(flashMinLength, flashMaxLength-1) + Random.value);
         StartCoroutine(DoRandomPause());
@@ -32,7 +32,7 @@ public class LightFlashController : MonoBehaviour
 
     IEnumerator DoRandomPause()
     {
-        childLight.GetComponent<Light2D>().intensity = 0;
+        childLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().intensity = 0;
         GetComponent<AudioSource>().Pause();
         yield return new WaitForSeconds(Random.Range(pauseMinLength, pauseMaxLength-1) + Random.value);
         StartCoroutine(DoRandomLight());
@@ -42,11 +42,11 @@ public class LightFlashController : MonoBehaviour
     // we might need it /shrug
     public void TurnOnLight()
     {
-        childLight.GetComponent<Light2D>().intensity = intensity;
+        childLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().intensity = intensity;
     }
 
     public void TurnOfflight()
     {
-        childLight.GetComponent<Light2D>().intensity = 0;
+        childLight.GetComponent<UnityEngine.Rendering.Universal.Light2D>().intensity = 0;
     }
 }
